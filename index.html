@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS Quiz Game</title>
+    <style>
+        body {
+            background-color: #e9e7fd;
+            color: #4B0082;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .quiz-container {
+            margin-top: 50px;
+        }
+        .quiz-image img {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        .options {
+            margin-top: 20px;
+        }
+        .option-button {
+            background-color: #7F00FF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .option-button:hover {
+            background-color: #4B0082;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>BTS Member Quiz</h1>
+        <div class="quiz-image">
+            <img src="" alt="BTS Member" id="member-image">
+        </div>
+        <div class="options">
+            <button class="option-button" onclick="checkAnswer(this)">RM</button>
+            <button class="option-button" onclick="checkAnswer(this)">Jin</button>
+            <button class="option-button" onclick="checkAnswer(this)">Suga</button>
+            <button class="option-button" onclick="checkAnswer(this)">J-Hope</button>
+            <button class="option-button" onclick="checkAnswer(this)">Jimin</button>
+            <button class="option-button" onclick="checkAnswer(this)">V</button>
+            <button class="option-button" onclick="checkAnswer(this)">Jungkook</button>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const members = [
+            { name: "RM", image: "https://github.com/mcsynapse/Trivia/raw/main/rm.jpg" },
+            { name: "Jin", image: "https://github.com/mcsynapse/Trivia/raw/main/jin.jpg" },
+            { name: "Suga", image: "https://github.com/mcsynapse/Trivia/raw/main/suga.jpg" },
+            { name: "J-Hope", image: "https://github.com/mcsynapse/Trivia/raw/main/j-hope.jpg" },
+            { name: "Jimin", image: "https://github.com/mcsynapse/Trivia/raw/main/jimin.jpg" },
+            { name: "V", image: "https://github.com/mcsynapse/Trivia/raw/main/v.jpg" },
+            { name: "Jungkook", image: "https://github.com/mcsynapse/Trivia/raw/main/jungkook.jpg" }
+        ];
+
+        const randomMember = members[Math.floor(Math.random() * members.length)];
+        document.getElementById('member-image').src = randomMember.image;
+
+        function checkAnswer(button) {
+            const userAnswer = button.textContent;
+            const resultElement = document.getElementById('result');
+
+            if (userAnswer === randomMember.name) {
+                resultElement.textContent = "Correct!";
+                resultElement.style.color = "green";
+            } else {
+                resultElement.textContent = "Wrong! Try Again.";
+                resultElement.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
