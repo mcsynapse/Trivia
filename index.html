@@ -91,20 +91,28 @@
             { name: "V", image: "https://github.com/mcsynapse/Trivia/raw/main/v.webp" },
             { name: "Jungkook", image: "https://github.com/mcsynapse/Trivia/raw/main/jungkook.webp" }
         ];
-
-        let currentMember;
-
+    
+        let currentMember = null;
+    
         function loadQuestion() {
-            currentMember = members[Math.floor(Math.random() * members.length)];
+            let newMember;
+    
+            // Keep generating a new member until it's not the same as the current one
+            do {
+                newMember = members[Math.floor(Math.random() * members.length)];
+            } while (newMember === currentMember);
+    
+            currentMember = newMember; // Update the current member
+    
             document.getElementById('member-image').src = currentMember.image;
             document.getElementById('result').textContent = '';
             document.getElementById('next-question').style.display = 'none';
         }
-
+    
         function checkAnswer(button) {
             const userAnswer = button.textContent;
             const resultElement = document.getElementById('result');
-
+    
             if (userAnswer === currentMember.name) {
                 resultElement.textContent = "Correct!";
                 resultElement.style.color = "green";
@@ -114,13 +122,14 @@
                 resultElement.style.color = "red";
             }
         }
-
+    
         function nextQuestion() {
             loadQuestion();
         }
-
+    
         // Initial load
         loadQuestion();
     </script>
+    
 </body>
 </html>
